@@ -1,9 +1,4 @@
-/**
- * La clase Graph representa un grafo en su forma básica, el cual
- *     se creará con una cantidad fija de vertices y se le podrán agregar
- *     aristas desde un vértice a otro representando un peso.
- */
-
+package utils;
 import java.util.*;
 
 public class Graph {
@@ -130,5 +125,30 @@ public class Graph {
     //obtener cantidad total de aristas creadas
     public int getEdges() {
         return edges;
+    }
+
+    public List<Integer> TSP_DFS(int v, boolean[] visited, List<Integer> path, int target){
+        path.add(v);
+        visited[v] = true;
+        if (v == target) {
+            return path;
+        }
+        for (int i = 0; i < vertices; i++) {
+            if (adj[v][i] != 0 && !visited[i]) {
+                List<Integer> newPath = TSP_DFS(i, visited, path, target);
+                if (newPath != null) {
+                    return newPath;
+                }
+            }
+        }
+        visited[v] = false;
+        path.remove(path.size() - 1);
+        return null;
+    }
+
+    public List<Integer> TSP(int start, int target){
+        List<Integer> path = new ArrayList<>();
+        boolean[] visited = new boolean[vertices];
+        return TSP_DFS(start, visited, path, target);
     }
 }
