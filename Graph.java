@@ -17,7 +17,7 @@ public class Graph {
     //cantidad de aristas creadas
     private int edges;
 
-
+    //comentario prueba
     /**
      * Constructor de la clase Graph
      * @param vertices representa la cantidad de vertices que tendrá el nuevo grafo.
